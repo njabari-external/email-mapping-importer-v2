@@ -1,7 +1,12 @@
 {
   "api": {
-    "host": "api.mediarithmics.com",
+    "host": "https://api.mediarithmics.com",
+    "base": "/v1/datamarts/",
+    "path": [ "/email_identifiers/", "/providers/" ],
+    "query": "?force_replace=false",
     "port": 80
   },
-  "workerCount": 50
+  "workerCount": 50,
+  "outputFile": "/email-mapping-importer-output.csv",
+  "maxTimeout": 30000
 }
