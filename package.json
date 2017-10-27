@@ -1,0 +1,36 @@
+{
+  "name": "email-mapping-importer-v2",
+  "version": "1.0.0",
+  "description": "email mapper v2",
+  "main": "index.js",
+  "engines": {
+    "node": "8.5.0"
+  },
+  "scripts": {
+    "dev": "nodemon build/index.js --datamart_id=1001 --technical_name=EMAIL_OPT_IN --directory=. --email_file=mocks/email_test.csv --api_token=api:<YOUR API TOKEN>",
+    "build": "node_modules/.bin/tsc",
+    "watch": "node_modules/.bin/tsc -w",
+    "postinstall": "npm run build",
+    "start": "node build/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/njabari-external/email-mapping-importer-v2.git"
+  },
+  "author": "Mediarithmics",
+  "license": "ISC",
+  "dependencies": {
+    "config": "~1.27.0",
+    "csv-parse": "~2.0.0",
+    "parallel-transform": "~1.1.0",
+    "request": "~2.83.0",
+    "request-promise": "~4.2.2",
+    "retry": "~0.10.1",
+    "typescript": "~2.5.3"
+  },
+  "devDependencies": {
+    "@types/node": "~8.0.47",
+    "nodemon": "~1.12.1"
+  }
+}
