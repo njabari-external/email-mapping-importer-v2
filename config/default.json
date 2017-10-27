@@ -8,5 +8,8 @@
   },
   "workerCount": 50,
   "outputFile": "/email-mapping-importer-output.csv",
-  "maxTimeout": 30000
+  "retry": {
+    "retries": 10,
+    "maxtimeout": 30000
+  }
 }

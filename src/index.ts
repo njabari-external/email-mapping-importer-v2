@@ -35,7 +35,6 @@ readStream
     .on('error', errorHandler)
     .on('finish', () => logMessage('init'))
   .pipe(emailInserter())
-    .on('error', errorHandler)
     .on('finish', () => logMessage('called'))
   .pipe(writeStream)
     .on('error', errorHandler)

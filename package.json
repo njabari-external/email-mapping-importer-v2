@@ -7,7 +7,7 @@
     "node": "8.5.0"
   },
   "scripts": {
-    "dev": "nodemon build/index.js --datamart_id=1001 --technical_name=EMAIL_OPT_IN --directory=. --email_file=mocks/email_test.csv --api_token=<your API Token>",
+    "dev": "nodemon build/index.js --datamart_id=1001 --technical_name=EMAIL_OPT_IN --directory=. --email_file=mocks/email_test.csv --api_token=api:<YOUR API TOKEN>",
     "build": "node_modules/.bin/tsc",
     "watch": "node_modules/.bin/tsc -w",
     "postinstall": "npm run build",

@@ -1,4 +1,5 @@
 import { mapCLIArguments, mapURL } from './mapper';
+import errorHandler from './error';
 
 const parallelTransform = require('parallel-transform');
 const requestPromise = require('request-promise');
@@ -26,17 +27,27 @@ function callAPI(emailHash) {
   return requestPromise(options);
 }
 
-
+let i = 0;
 export function emailInserter() {
   return parallelTransform(CLI_ARGS.workerCount, {ordered:false}, (line, callback) => {
+    i++
     // remove bracket from coming string, ex: [email_hash];
     let emailHash:string = line['$email_addresses.$hash'].replace(/[\[\]']+/g, '');
+
+    if (i == 30) {
+      emailHash = line['$email_addresses.$hash'];
+
+    }
 
     callAPI(emailHash)
       .then(() => callback(null, `OK, UR: ${emailHash}\n`))
       .catch(err => { 
-        let errorMessage = {error: err, detail: `KO, UR: ${emailHash} - ${err}\n`};
-        callback(errorMessage);
+        i++
+        let errorMessage = {error: err, detail: `KO, UR: ${emailHash} - ${err}`};
+
+        errorHandler(errorMessage)
+          .then(() => callback(null))
+          .catch(err => callback(null));
       });
   });
 
